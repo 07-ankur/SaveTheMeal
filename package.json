@@ -1,0 +1,19 @@
+{
+  "name": "savethemeal",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/07-ankur/SaveTheMeal.git"
+  },
+  "author": "07-ankur",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/07-ankur/SaveTheMeal/issues"
+  },
+  "homepage": "https://github.com/07-ankur/SaveTheMeal#readme",
+  "description": ""
+}
