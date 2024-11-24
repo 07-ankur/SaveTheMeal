@@ -1,12 +1,11 @@
 import React from "react";
-import {
-  Box,
-  Container,
-  Divider,
-  Typography,
-} from "@mui/material";
+import { Box, Container, Divider, Typography, IconButton } from "@mui/material";
 import { Stack } from "@mui/system";
 import FoodBankIcon from "@mui/icons-material/FoodBank";
+import TelegramIcon from '@mui/icons-material/Telegram';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import MailIcon from '@mui/icons-material/Mail';
 
 const Footer: React.FC = () => {
   return (
@@ -14,22 +13,86 @@ const Footer: React.FC = () => {
       <Box
         sx={{
           pb: 1,
-          bgcolor: "#04945F",
+          background: "linear-gradient(to bottom, #242F2B, #0F734F)",
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          bottom:0,
-          position:"sticky"
+          bottom: 0,
+          // position:"sticky"
         }}
       >
-        <Container>
-
+        <Container
+          sx={{
+            mt: 2,
+            background: "linear-gradient(to bottom, #242F2B, #0F734F)",
+            padding: "2rem",
+            borderRadius: "10px",
+          }}
+        >
+          <Box display="flex" alignItems="center" flexGrow={1}>
+            <Box display="flex" flexDirection="column">
+              <Box
+                display="flex"
+                flexDirection="row"
+                justifyContent="space-between"
+              >
+                <Box display="flex" flexDirection="column">
+                  <Typography variant="h3" color="white">
+                    "Together, Turning
+                  </Typography>
+                  <Typography variant="h2" color="yellow">
+                    Surplus into Smiles"
+                  </Typography>
+                </Box>
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
+                >
+                  <Typography variant="h5" color="#CBEBDB" sx={{ my: 1 }}>
+                    A Small Act, A Big Impact.
+                  </Typography>
+                  <Stack
+                    direction="row"
+                    spacing={1}
+                    alignItems="center"
+                    justifyContent="space-between"
+                    flexWrap="wrap"
+                  >
+                      <IconButton key={1}>
+                        <TelegramIcon sx={{color:'white'}}/>
+                      </IconButton>
+                      <IconButton key={2}>
+                        <TwitterIcon sx={{color:'white'}}/>
+                      </IconButton>
+                      <IconButton key={3}>
+                        <InstagramIcon sx={{color:'white'}}/>
+                      </IconButton>
+                      <IconButton key={4}>
+                        <MailIcon sx={{color:'white'}}/>
+                      </IconButton>
+                  </Stack>
+                </Box>
+              </Box>
+              <Typography variant="subtitle1" color="#CBEBDB">
+                A platform dedicated to reducing food waste and fighting hunger
+                by connecting surplus food from donors to those in need. By
+                bridging the gap between excess and necessity, SaveTheMeal
+                ensures that no meal goes to waste and every donation brings
+                hope to someone’s table. Together, we’re building a sustainable,
+                compassionate future—one rescued meal at a time.
+              </Typography>
+            </Box>
+          </Box>
+          <Box display="flex" alignItems="center" flexGrow={1}></Box>
         </Container>
+
         <Divider
           sx={{
             width: "95%",
             height: "1.1px",
-            mt: 3,
             mb: 2,
             backgroundColor: "white",
           }}
@@ -47,7 +110,8 @@ const Footer: React.FC = () => {
               </Typography>
             </Box>
             <Box sx={{ mx: 4, display: "flex", alignItems: "center" }}>
-              <FoodBankIcon sx={{ fontSize: 36, color: "white" }} /> {/* Adjusted fontSize */}
+              <FoodBankIcon sx={{ fontSize: 36, color: "yellow" }} />{" "}
+              {/* Adjusted fontSize */}
               <Typography variant="h6" color="white">
                 SaveTheMeal
               </Typography>

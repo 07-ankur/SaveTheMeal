@@ -12,10 +12,7 @@ const Layout: React.FC<LayoutProps> = ({children}) => {
     <div className="min-h-screen bg-gray-100">
       {/* <Toaster /> */}
       <Navbar />
-      <div className="h-80 bg-gray-100">
-        Hello
-      </div>
-      <main className="container mx-auto px-4 py-8 min-h-[78.25vh]">{children}</main>
+      <main className="container mx-auto P-0 min-h-[78.25vh]">{children}</main>
       <Footer/>
     </div>
   );

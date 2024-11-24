@@ -30,25 +30,31 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <AppBar position="static" color="default" elevation={1}>
+    <AppBar position="sticky" color="default" elevation={1}>
       <Container maxWidth="lg">
         <Toolbar>
           {/* Logo Section */}
-          <Box display="flex" flexGrow={1}>
+          <Box display="flex" flexGrow={1 / 6}>
             <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
-            <Box sx={{ mx: 1, display: "flex", alignItems: "center" }}>
-              <FoodBankIcon sx={{ fontSize: 36, color: "charcoal" }} /> {/* Adjusted fontSize */}
-              <Typography variant="h6" color="charcoal">
-                SaveTheMeal
-              </Typography>
-            </Box>
+              <Box sx={{ mr: 1, display: "flex", alignItems: "center" }}>
+                <FoodBankIcon sx={{ fontSize: 50, color: "charcoal" }} />
+                <Typography variant="h5" color="charcoal">
+                  SaveTheMeal
+                </Typography>
+              </Box>
             </Link>
           </Box>
 
-          {/* Navigation Links */}
-          <Box display="flex" justifyContent={"center"} gap={1}>
+          {/* Center Navigation Links */}
+          <Box display="flex" flexGrow={1} gap={2}>
             <Link to="/" style={{ textDecoration: "none" }}>
               <Button color="inherit">Home</Button>
+            </Link>
+            <Link to="/" style={{ textDecoration: "none" }}>
+              <Button color="inherit">About Us</Button>
+            </Link>
+            <Link to="/" style={{ textDecoration: "none" }}>
+              <Button color="inherit">Gallery</Button>
             </Link>
             {user && user.role === "donor" && (
               <>
@@ -61,7 +67,10 @@ const Navbar: React.FC = () => {
               </>
             )}
             {user && user.role === "volunteer" && (
-              <Link to="/volunteer/dashboard" style={{ textDecoration: "none" }}>
+              <Link
+                to="/volunteer/dashboard"
+                style={{ textDecoration: "none" }}
+              >
                 <Button color="inherit">Volunteer Dashboard</Button>
               </Link>
             )}
@@ -82,8 +91,8 @@ const Navbar: React.FC = () => {
             )}
           </Box>
 
-          {/* User Section */}
-          <Box display="flex" alignItems="center" ml={2}>
+          {/* Right-aligned User Section */}
+          <Box display="flex" alignItems="center">
             {user ? (
               <>
                 <IconButton onClick={handleMenuOpen}>
@@ -106,7 +115,10 @@ const Navbar: React.FC = () => {
                   </Box>
                   <Divider />
                   <MenuItem onClick={handleMenuClose}>
-                    <Link to="/profile" style={{ textDecoration: "none", color: "inherit" }}>
+                    <Link
+                      to="/profile"
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
                       Profile
                     </Link>
                   </MenuItem>
@@ -123,12 +135,30 @@ const Navbar: React.FC = () => {
             ) : (
               <Box display="flex" gap={1}>
                 <Link to="/login" style={{ textDecoration: "none" }}>
-                  <Button variant="contained" color="primary">
+                  <Button
+                    variant="contained"
+                    sx={{
+                      backgroundColor: "black",
+                      color: "white",
+                      "&:hover": {
+                        backgroundColor: "#333333",
+                      },
+                    }}
+                  >
                     Login
                   </Button>
                 </Link>
                 <Link to="/signup" style={{ textDecoration: "none" }}>
-                  <Button variant="outlined" color="primary">
+                  <Button
+                    variant="outlined"
+                    sx={{
+                      borderColor: "black",
+                      color: "black",
+                      "&:hover": {
+                        borderColor: "#333333",
+                      },
+                    }}
+                  >
                     Sign Up
                   </Button>
                 </Link>
