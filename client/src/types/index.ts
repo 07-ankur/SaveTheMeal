@@ -12,18 +12,17 @@ export interface Vehicle {
   capacity: string;
 }
 
-export interface Booking {
+export interface Donation {
   _id: string;
   userId: string;
   driverId: string | null;
   pickupLocation: string;
-  dropoffLocation: string;
+  dropoffNGO: string;
   status: "pending" | "accepted" | "in_progress" | "completed" | "cancelled";
   createdAt: string;
-  price: number;
 }
 
-export interface Job extends Booking {
+export interface Job extends Donation {
   estimatedEarnings: number;
 }
 
