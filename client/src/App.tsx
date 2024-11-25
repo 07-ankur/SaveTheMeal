@@ -5,18 +5,17 @@ import Home from "./components/User/Home";
 import "./App.css"
 import SignupForm from "./components/Auth/SignupForm";
 import LoginForm from "./components/Auth/LoginForm";
-// import AdminDashboard from "./components/Admin/AdminDashboard";
-// import VolunteerDashboard from "./components/Volunteer/VolunteerDashboard";
-// import DonationForm from "./components/Donation/DonationForm";
-// import MyDonation from "./components/Donation/MyDonation"
-// import UserProfile from "./components/User/UserProfile";
-// import TrackingComponent from "./components/Tracking/TrackingComponent";
-// import LocationUpdate from "./components/Volunteer/LocationUpdate";
-// import VehicleManagement from "./components/Volunteer/VehicleManagement";
-// import { useAuth } from "./hooks/useAuth";
+import AdminDashboard from "./components/Admin/AdminDashboard";
+import VolunteerDashboard from "./components/Volunteer/VolunteerDashboard";
+import DonationForm from "./components/Donation/DonationForm";
+import MyDonation from "./components/Donation/MyDonation"
+import UserProfile from "./components/User/UserProfile";
+import TrackingComponent from "./components/Tracking/TrackingComponent";
+import LocationUpdate from "./components/Volunteer/LocationUpdate";
+import { useAuth } from "./hooks/useAuth";
 
 const App: React.FC = () => {
-  // const { user } = useAuth();
+  const { user } = useAuth();
 
   return (
     <Layout>
@@ -24,7 +23,7 @@ const App: React.FC = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/signup" element={<SignupForm />} />
-        {/* {user && (
+        {user && (
           <>
             <Route path="/profile" element={<UserProfile />} />
             <Route path="/tracking" element={<TrackingComponent />} />
@@ -47,7 +46,7 @@ const App: React.FC = () => {
               <Route path="/admin" element={<AdminDashboard />} />
             )}
           </>
-        )} */}
+        )}
       </Routes>
     </Layout>
   );
