@@ -1,9 +1,9 @@
-const Booking = require("../models/Booking");
+const Donation = require("../models/Donation");
 
 exports.getTrackingInfo = async (req, res) => {
   try {
-    const { bookingId } = req.params;
-    const tracking = await Booking.findById(bookingId);
+    const { donationId } = req.params;
+    const tracking = await Donation.findById(donationId);
 
     if (!tracking) {
       return res
@@ -20,10 +20,10 @@ exports.getTrackingInfo = async (req, res) => {
 
 exports.updateTracking = async (req, res) => {
   try {
-    const { bookingId } = req.params;
+    const { donationId } = req.params;
     const { status, latitude, longitude } = req.body;
 
-    const tracking = await Booking.findById(bookingId);
+    const tracking = await Donation.findById(donationId);
     if (!tracking) {
       return res
         .status(404)

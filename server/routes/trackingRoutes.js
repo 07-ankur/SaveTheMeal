@@ -7,7 +7,7 @@ const { protect, authorize } = require("../middlewares/authMiddleware");
 
 const router = express.Router();
 
-router.get("/:bookingId", protect, getTrackingInfo);
-router.put("/:bookingId", protect, authorize("driver"), updateTracking);
+router.get("/:donationId", protect, getTrackingInfo);
+router.put("/:donationId", protect, authorize("volunteer"), updateTracking);
 
 module.exports = router;

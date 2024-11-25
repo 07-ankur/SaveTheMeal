@@ -58,10 +58,10 @@ export const getTrackingInfo = async (bookingId: string) => {
 };
 
 export const updateTracking = async (
-  bookingId: string,
+  donationId: string,
   data: { status: string; latitude: number; longitude: number }
 ) => {
-  const response = await api.put(`/tracking/${bookingId}`, data, {
+  const response = await api.put(`/tracking/${donationId}`, data, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },

@@ -8,7 +8,7 @@ const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
 const donationRoutes = require("./routes/donationRoutes");
 const volunteerRoutes = require("./routes/volunteerRoutes");
-const vehicleRoutes = require("./routes/vehicleRoutes");
+// const ngoRoutes = require("./routes/ngoRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const trackingRoutes = require("./routes/trackingRoutes");
 
@@ -20,7 +20,7 @@ connectDB();
 // Middleware
 app.use(
   cors({
-    origin: process.env.FRONTEND_URI, 
+    origin: [process.env.FRONTEND_URI, "http://localhost:5173"],
     credentials: true, 
   })
 );
@@ -31,9 +31,13 @@ app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/donations", donationRoutes);
 app.use("/api/volunteers", volunteerRoutes);
-app.use("/api/vehicles", vehicleRoutes);
+// app.use("/api/ngo", ngoRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/tracking", trackingRoutes);
+
+app.get("/", (req, res) => {
+  res.status(200).json({ message: "SaveTheMeal server is working perfectly" });
+});
 
 // Error handler middleware
 app.use(errorHandler);

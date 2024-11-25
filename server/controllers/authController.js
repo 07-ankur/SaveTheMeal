@@ -9,7 +9,7 @@ exports.register = async (req, res) => {
       email,
       password,
       role,
-      ngoInfo: { type, licenseNumber, capacity } = {},
+      ngoInfo: { type, licenseNumber } = {},
     } = req.body;
 
     const userExists = await User.findOne({ email });
@@ -22,7 +22,7 @@ exports.register = async (req, res) => {
       email,
       password: hashedPassword,
       role,
-      ngoInfo: { type, licenseNumber, capacity },
+      ngoInfo: { type, licenseNumber },
     });
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
       expiresIn: "1d",

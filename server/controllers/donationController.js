@@ -21,13 +21,13 @@ exports.createDonation = async (req, res) => {
 
     res.status(201).json({
       success: true,
-      message: "Booking created successfully",
-      booking,
+      message: "Donation initiated successfully",
+      donation,
     });
   } catch (error) {
     res
       .status(500)
-      .json({ message: "Error creating booking", error: error.message });
+      .json({ message: "Error initiating donation", error: error.message });
   }
 };
 
@@ -70,7 +70,7 @@ exports.updateDonationStatus = async (req, res) => {
 exports.getUserDonations = async (req, res) => {
   try {
     const donations = await Donation.find({ user: req.params.userId }).populate(
-      "driver",
+      "volunteer",
       "name email"
     );
     res.json(donations);

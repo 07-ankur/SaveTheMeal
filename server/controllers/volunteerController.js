@@ -57,7 +57,7 @@ exports.acceptJob = async (req, res) => {
 
 exports.getVolunteerJobs = async (req, res) => {
   try {
-    const jobs = await Booking.find({ volunteer: req.user.id }).populate(
+    const jobs = await Donation.find({ volunteer: req.user.id }).populate(
       "user",
       "name"
     );

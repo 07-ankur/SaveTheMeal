@@ -8,7 +8,7 @@ router.use(protect);
 router.post("/", donationController.createDonation);
 router.get("/:id", donationController.getDonationById);
 router.put("/:id/status", donationController.updateDonationStatus);
-router.put("/:bookingId/cancel", donationController.cancelDonation);
+router.put("/:donationId/cancel", donationController.cancelDonation);
 router.get("/user/:userId", donationController.getUserDonations);
 
 module.exports = router;
