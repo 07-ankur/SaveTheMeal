@@ -184,16 +184,6 @@ const AdminDashboard: React.FC = () => {
                     </CardContent>
                   </Card>
                 </Grid>
-                <Grid item xs={12} md={3}>
-                  <Card>
-                    <CardContent>
-                      <Typography variant="h6">Total Donation</Typography>
-                      <Typography variant="h4">
-                        ${dashboardData?.totalDonation}
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                </Grid>
               </>
             )}
           </Grid>

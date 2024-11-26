@@ -9,47 +9,68 @@ const api = axios.create({
   withCredentials: true,
 });
 
-// api.interceptors.request.use(
-//   (config) => {
-//     const token = localStorage.getItem("token");
-//     if (token) {
-//       config.headers.Authorization = `Bearer ${token}`;
-//     }
-//     return config;
-//   },
-//   (error) => {
-//     return Promise.reject(error);
-//   }
-// );
+api.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers['Authorization'] = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
-export const login = async (email: string, password: string): Promise<User> => {
-  const response = await api.post("/auth/login", { email, password });
-  localStorage.setItem("userId", response.data.user.id);
-  localStorage.setItem("token", response.data.token);
-  return response.data.user;
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response && error.response.status === 401) {
+      // Token might be expired, log out user
+      localStorage.removeItem('token');
+      window.location.href = '/login'; // Redirect to login
+    }
+    return Promise.reject(error);
+  }
+);
+
+export const login = async (email: string, password: string) => {
+  try {
+    const response = await api.post('/auth/login', { email, password });
+    const { token, user } = response.data;
+
+    localStorage.setItem("userId", user.id);
+    localStorage.setItem('token', token);
+
+    return user;
+  } catch (error) {
+    console.error('Login error:', error);
+    throw error;
+  }
 };
 
-export const logout = async (): Promise<void> => {
-  localStorage.removeItem("userId");
-  localStorage.removeItem("token");
+export const logout = async () => {
+  try {
+    await api.post('/logout');
+    localStorage.removeItem('token');
+  } catch (error) {
+    console.error('Logout error:', error);
+    throw error;
+  }
 };
 
 export const getCurrentUser = async (): Promise<User | null> => {
   try {
-    const response = await api.get("/users/profile", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
+    const response = await api.get("/users/profile");
     return response.data.user;
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
+    console.error("Error fetching user profile:", error);
     return null;
   }
 };
 
-export const getTrackingInfo = async (bookingId: string) => {
-  const response = await api.get(`/tracking/${bookingId}`, {
+export const getTrackingInfo = async (donationId: string) => {
+  const response = await api.get(`/tracking/${donationId}`, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },

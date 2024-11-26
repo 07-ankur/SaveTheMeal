@@ -107,22 +107,48 @@ const Home: React.FC = () => {
               <Grid item xs={12} sm={6} md={4}>
                 <Card>
                   <CardContent>
-                    <Typography variant="h6" fontWeight="bold">
+                    <Typography variant="h5" fontWeight="bold">
                       Volunteer Dashboard
                     </Typography>
-                    <Typography color="textSecondary">
+                    <Typography color="textSecondary" sx={{mb:2}}>
                       Manage your activities
                     </Typography>
-                    <Typography paragraph>
+                    <Typography>
                       Accept transport requests, update your location, and help
                       with food distribution.
                     </Typography>
                   </CardContent>
-                  <CardActions>
+                  <CardActions sx={{ml:1, mb:1}}>
                     <Button
                       component={Link}
                       to="/volunteer/dashboard"
                       variant="contained"
+                      sx={{bgcolor:'black'}}
+                    >
+                      Go to Dashboard
+                    </Button>
+                  </CardActions>
+                </Card>
+              </Grid>
+              <Grid item xs={12} sm={6} md={4}>
+                <Card>
+                  <CardContent>
+                    <Typography variant="h5" fontWeight="bold">
+                      Track a Donation
+                    </Typography>
+                    <Typography color="textSecondary" sx={{mx:0.5,mb:2}}>
+                      Real-time food tracking
+                    </Typography>
+                    <Typography>
+                      Track the current location and status of any ongoing donation.
+                    </Typography>
+                  </CardContent>
+                  <CardActions sx={{ml:1, mb:1}}>
+                    <Button
+                      component={Link}
+                      to="/volunteer/update-location"
+                      variant="contained"
+                      sx={{bgcolor:'black'}}
                     >
                       Go to Dashboard
                     </Button>

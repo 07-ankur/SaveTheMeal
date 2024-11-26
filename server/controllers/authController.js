@@ -12,6 +12,8 @@ exports.register = async (req, res) => {
       ngoInfo: { type, licenseNumber } = {},
     } = req.body;
 
+    console.log("Incoming Request Body:", req.body);
+
     const userExists = await User.findOne({ email });
     if (userExists) {
       return res.status(400).json({ message: "User already exists" });

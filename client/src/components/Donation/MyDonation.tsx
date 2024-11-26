@@ -20,7 +20,7 @@ const MyDonations: React.FC = () => {
   const fetchDonations = useCallback(async () => {
     try {
       const response = await api.get(
-        `/dontions/user/${localStorage.getItem("userId")}`,
+        `/donations/user/${localStorage.getItem("userId")}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,

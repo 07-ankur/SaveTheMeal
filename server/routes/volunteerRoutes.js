@@ -5,7 +5,8 @@ const { protect, authorize } = require("../middlewares/authMiddleware");
 
 router.use(protect, authorize("volunteer"));
 
-router.put("/location", volunteerController.updateLocation);
+router.get("/current-job", volunteerController.getCurrentJob);
+router.put("/update-location", volunteerController.updateLocation);
 router.get("/jobs/available", volunteerController.getAvailableJobs);
 router.put("/jobs/:id", volunteerController.acceptJob);
 router.get("/jobs", volunteerController.getVolunteerJobs);

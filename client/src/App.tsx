@@ -29,8 +29,8 @@ const App: React.FC = () => {
             <Route path="/tracking" element={<TrackingComponent />} />
             {user.role === "donor" && (
               <>
-                <Route path="/donate" element={<DonationForm />} />
-                <Route path="/donations" element={<MyDonation />} />
+                <Route path="/donatefood" element={<DonationForm />} />
+                <Route path="/mydonations" element={<MyDonation />} />
               </>
             )}
             {user.role === "volunteer" && (
@@ -43,7 +43,7 @@ const App: React.FC = () => {
               </>
             )}
             {user.role === "admin" && (
-              <Route path="/admin" element={<AdminDashboard />} />
+              <Route path="/admin" element={<AdminDashboard/>} />
             )}
           </>
         )}

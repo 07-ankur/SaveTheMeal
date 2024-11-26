@@ -23,7 +23,7 @@ const VolunteerDashboard: React.FC = () => {
 
   const fetchJobs = useCallback(async () => {
     try {
-      const response = await api.get("/volunteers/donations/available", {
+      const response = await api.get("/volunteers/jobs/available", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -40,7 +40,7 @@ const VolunteerDashboard: React.FC = () => {
 
   const fetchMyJobs = useCallback(async () => {
     try {
-      const response = await api.get("/volunteers/donations", {
+      const response = await api.get("/volunteers/jobs", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -57,7 +57,7 @@ const VolunteerDashboard: React.FC = () => {
 
   const fetchVolunteerStatus = useCallback(async () => {
     try {
-      const response = await api.get("/driver/status");
+      const response = await api.get("/volunteers/status");
       setIsAvailable(response.data.isAvailable);
     } catch (error) {
       console.error(error);
@@ -86,7 +86,7 @@ const VolunteerDashboard: React.FC = () => {
 
   const acceptJob = async (jobId: string) => {
     try {
-      await api.put(`/volunteers/donations/${jobId}`, {}, {
+      await api.put(`/volunteers/jobs/${jobId}`, {}, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

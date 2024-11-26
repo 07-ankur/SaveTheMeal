@@ -17,25 +17,25 @@ const LocationUpdate: React.FC = () => {
   const { toast } = useToast();
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
-  const [currentBooking, setCurrentBooking] = useState<any>(null);
+  const [currentJob, setCurrentJob] = useState<any>(null);
 
-  const fetchCurrentBooking = useCallback(async () => {
+  const fetchCurrentJob = useCallback(async () => {
     try {
-      const response = await api.get("/driver/current-booking");
-      setCurrentBooking(response.data);
+      const response = await api.get("/volunteers/current-job");
+      setCurrentJob(response.data);
     } catch (error) {
       console.error(error);
     }
   }, []);
 
   useEffect(() => {
-    fetchCurrentBooking();
-  }, [fetchCurrentBooking]);
+    fetchCurrentJob();
+  }, [fetchCurrentJob]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await api.post("/driver/update-location", { latitude, longitude });
+      await api.put("/volunteers/update-location", { latitude, longitude });
       toast({
         title: "Location Updated",
         description: "Your location has been successfully updated.",
@@ -75,23 +75,23 @@ const LocationUpdate: React.FC = () => {
         Update Location
       </Typography>
 
-      {currentBooking && (
-        <Card sx={{ mb: 4 }}>
+      {currentJob && (
+        <Card sx={{ mb: 1 }}>
           <CardHeader
-            title={<Typography variant="h6">Current Booking</Typography>}
+            title={<Typography variant="h6">Current Job</Typography>}
           />
           <CardContent>
             <Typography>
-              <strong>Booking ID:</strong> {currentBooking.id}
+              <strong>Donation ID:</strong> {currentJob._id}
             </Typography>
             <Typography>
-              <strong>From:</strong> {currentBooking.pickup}
+              <strong>From:</strong> {currentJob.pickupLocation}
             </Typography>
             <Typography>
-              <strong>To:</strong> {currentBooking.dropoff}
+              <strong>To:</strong> {currentJob.dropoffNGO}
             </Typography>
             <Typography>
-              <strong>Status:</strong> {currentBooking.status}
+              <strong>Status:</strong> {currentJob.status}
             </Typography>
           </CardContent>
         </Card>
@@ -130,11 +130,11 @@ const LocationUpdate: React.FC = () => {
               <Button
                 variant="outlined"
                 onClick={getCurrentLocation}
-                sx={{ mt: 1 }}
+                sx={{ mt: 1, borderColor:'black', color:'black' }}
               >
                 Get Current Location
               </Button>
-              <Button type="submit" variant="contained" fullWidth>
+              <Button type="submit" variant="contained" fullWidth sx={{bgcolor:'black'}}>
                 Update Location
               </Button>
             </Box>

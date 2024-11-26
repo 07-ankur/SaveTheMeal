@@ -14,16 +14,18 @@ exports.getDashboardData = async (req, res) => {
       return res.status(400).json({ message: "Invalid date range" });
     }
 
-    const [donorCount, volunteerCount] = await Promise.all([
+    const [donorCount, volunteerCount, ngoCount] = await Promise.all([
       User.countDocuments({ role: "donor" }),
       User.countDocuments({ role: "volunteer" }),
+      User.countDocuments({ role: "ngo" }),
     ]);
 
     const donations = await Donation.find({
       createdAt: { $gte: start, $lte: end },
     })
       .populate("donor", "name email")
-      .populate("volunteer", "name email volunteerInfo");
+      .populate("volunteer", "name email volunteerInfo")
+      .populate("ngo", "name email ngoInfo");
 
     const donationCount = donations.length;
 
@@ -39,12 +41,12 @@ exports.getDashboardData = async (req, res) => {
           status: "completed",
         },
       },
-      {
-        $group: {
-          _id: { $dateToString: { format: "%Y-%m-%d", date: "$createdAt" } },
-          totalRevenue: { $sum: "$price" },
-        },
-      },
+      // {
+      //   $group: {
+      //     _id: { $dateToString: { format: "%Y-%m-%d", date: "$createdAt" } },
+      //     totalRevenue: { $sum: "$price" },
+      //   },
+      // },
       { $sort: { _id: 1 } },
     ]);
 
@@ -56,8 +58,8 @@ exports.getDashboardData = async (req, res) => {
     res.json({
       donorCount,
       volunteerCount,
+      ngoCount,
       donationCount,
-      totalDonation,
       donationAnalytics,
       donations,
       donors,

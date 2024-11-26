@@ -1,6 +1,26 @@
 const User = require("../models/User");
 const Donation = require("../models/Donation");
 
+exports.getCurrentJob = async (req, res) => {
+  try {
+    const currentJob = await Donation.findOne({
+      volunteer: req.user.id,
+      status: { $in: ["accepted", "in-progress"] },
+    }).populate("user", "name");
+
+    if (!currentJob) {
+      return res.status(404).json({ message: "No current job found" });
+    }
+
+    res.json(currentJob);
+  } catch (error) {
+    res.status(500).json({
+      message: "Error fetching current job",
+      error: error.message,
+    });
+  }
+};
+
 exports.updateLocation = async (req, res) => {
   try {
     const { latitude, longitude } = req.body;

@@ -41,7 +41,7 @@ const DonationForm: React.FC = () => {
         title: "Donation Successful",
         description: `Your donation ID is ${response.data.donation._id}`,
       });
-      navigate("/donations");
+      navigate("/mydonations");
     } catch (error) {
       toast({
         title: "Donation Failed",

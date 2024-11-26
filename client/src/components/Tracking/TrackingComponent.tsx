@@ -43,12 +43,12 @@ const TrackingComponent: React.FC = () => {
       setStatus(response.data.data.status);
     } catch (error) {
       setError(
-        "Failed to fetch tracking data. Please check the booking ID and try again."
+        "Failed to fetch tracking data. Please check the donation ID and try again."
       );
       toast({
         title: "Error",
         description:
-          "Failed to fetch tracking data. Please check the booking ID and try again.",
+          "Failed to fetch tracking data. Please check the donation ID and try again.",
         variant: "destructive",
       });
     } finally {
@@ -140,7 +140,7 @@ const TrackingComponent: React.FC = () => {
   return (
     <div style={{ padding: "16px", maxWidth: "800px", margin: "0 auto" }}>
       <Typography variant="h4" gutterBottom>
-        Track Your Ride
+        Track Your Donated Food
       </Typography>
 
       {/* Donation ID Card */}
@@ -148,7 +148,7 @@ const TrackingComponent: React.FC = () => {
         <CardContent>
           <Typography variant="h6">Enter Donation ID</Typography>
           <Typography variant="body2" color="textSecondary">
-            Provide your donation ID to track your ride.
+            Provide your donation ID to track your food.
           </Typography>
           <form onSubmit={handleSubmit} style={{ marginTop: "16px" }}>
             <TextField

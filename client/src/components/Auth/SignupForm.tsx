@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -24,9 +24,9 @@ const SignupForm: React.FC = () => {
     ngoInfo: {
       type: "",
       licenseNumber: "",
-      capacity: "",
     },
   });
+
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
@@ -51,10 +51,18 @@ const SignupForm: React.FC = () => {
       await api.post("/auth/register", formData);
       navigate("/login");
     } catch (err) {
-      setError("Signup failed. Please try again.");
+      if (err instanceof Error) {
+        const errorMessage =
+          (err as any).response?.data?.message || err.message || "Signup failed. Please try again.";
+        console.error("Error:", errorMessage);
+        setError(errorMessage);
+      } else {
+        console.error("Unexpected error:", err);
+        setError("An unexpected error occurred.");
+      }
     }
   };
-
+  
   return (
     <Box
       className="flex items-center justify-center"
@@ -129,7 +137,7 @@ const SignupForm: React.FC = () => {
                 onChange={handleRoleChange}
                 required
               >
-                <MenuItem value="donorr">Donor</MenuItem>
+                <MenuItem value="donor">Donor</MenuItem>
                 <MenuItem value="volunteer">Volunteer</MenuItem>
                 <MenuItem value="ngo">NGO</MenuItem>
                 <MenuItem value="admin">Admin</MenuItem>

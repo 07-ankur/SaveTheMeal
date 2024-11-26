@@ -25,17 +25,29 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
   useEffect(() => {
     const initAuth = async () => {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        setLoading(false);
+        return;
+      }
+  
       try {
         const userData = await getCurrentUser();
-        setUser(userData);
+        if (userData) {
+          setUser(userData);
+        }
       } catch (error) {
         console.error("Failed to get current user:", error);
+        localStorage.removeItem('token');
+        localStorage.removeItem('userId');
+        window.location.href = '/login'; // Redirect to login if token is invalid
       } finally {
         setLoading(false);
       }
     };
     initAuth();
   }, []);
+  
 
   const login = async (email: string, password: string) => {
     const userData = await loginService(email, password);

@@ -17,6 +17,7 @@ exports.createDonation = async (req, res) => {
       pickupLocation,
       dropoffNGO,
       status: "pending", 
+      volunteer: "N/A"
     });
 
     res.status(201).json({
@@ -34,7 +35,7 @@ exports.createDonation = async (req, res) => {
 exports.getDonationById = async (req, res) => {
   try {
     const donation = await Donation.findById(req.params.id).populate(
-      "user driver",
+      "user volunteer",
       "name email"
     );
     if (!donation) {
