@@ -10,19 +10,22 @@ import {
   Grid,
 } from "@mui/material";
 import { useAuth } from "../../hooks/useAuth";
+import Lottie from "lottie-react";
+import food_anim from "../../assets/food_anim.json";
 
 const Home: React.FC = () => {
   const { user } = useAuth();
 
   return (
-    <div className="space-y-6 bg-gradient-to-b from-[#a7f4df] to-[#FFFFFF] p-8 min-h-screen">
+    // <div className="space-y-6 bg-gradient-to-b from-[#5ee6b4] to-[#FFFFFF] p-8 min-h-screen">
+    <div className="space-y-6 bg-white p-8 min-h-screen">
       {/* Header Section */}
       <Box
         sx={{
           display: "flex",
           justifyContent: "space-between",
           flexDirection: "row",
-          p: 2,
+          p: 1,
           mx: 2,
         }}
       >
@@ -39,6 +42,11 @@ const Home: React.FC = () => {
             </Typography>
           </Box>
         </Box>
+            <Lottie
+              animationData={food_anim}
+              loop
+              style={{ width: "50vh", marginRight: 20, marginTop: -5 }}
+            />
       </Box>
 
       {/* Description Section */}
@@ -61,7 +69,7 @@ const Home: React.FC = () => {
                     <Typography color="textSecondary">
                       Have surplus food? Donate it now.
                     </Typography>
-                    <Typography paragraph>
+                    <Typography>
                       Help minimize food waste by sharing it with those in need.
                     </Typography>
                   </CardContent>
@@ -70,6 +78,7 @@ const Home: React.FC = () => {
                       component={Link}
                       to="/donatefood"
                       variant="contained"
+                      sx={{bgcolor:'black'}}
                     >
                       Donate Now
                     </Button>
@@ -85,7 +94,7 @@ const Home: React.FC = () => {
                     <Typography color="textSecondary">
                       View your donation history
                     </Typography>
-                    <Typography paragraph>
+                    <Typography>
                       Check the details and status of your past contributions.
                     </Typography>
                   </CardContent>
@@ -94,6 +103,7 @@ const Home: React.FC = () => {
                       component={Link}
                       to="/mydonations"
                       variant="outlined"
+                      sx={{color:'black', borderColor:'black'}}
                     >
                       View Donations
                     </Button>
@@ -110,7 +120,7 @@ const Home: React.FC = () => {
                     <Typography variant="h5" fontWeight="bold">
                       Volunteer Dashboard
                     </Typography>
-                    <Typography color="textSecondary" sx={{mb:2}}>
+                    <Typography color="textSecondary" sx={{ mb: 2 }}>
                       Manage your activities
                     </Typography>
                     <Typography>
@@ -118,12 +128,12 @@ const Home: React.FC = () => {
                       with food distribution.
                     </Typography>
                   </CardContent>
-                  <CardActions sx={{ml:1, mb:1}}>
+                  <CardActions sx={{ ml: 1, mb: 1 }}>
                     <Button
                       component={Link}
                       to="/volunteer/dashboard"
                       variant="contained"
-                      sx={{bgcolor:'black'}}
+                      sx={{ bgcolor: "black" }}
                     >
                       Go to Dashboard
                     </Button>
@@ -136,19 +146,20 @@ const Home: React.FC = () => {
                     <Typography variant="h5" fontWeight="bold">
                       Track a Donation
                     </Typography>
-                    <Typography color="textSecondary" sx={{mx:0.5,mb:2}}>
+                    <Typography color="textSecondary" sx={{ mx: 0.5, mb: 2 }}>
                       Real-time food tracking
                     </Typography>
                     <Typography>
-                      Track the current location and status of any ongoing donation.
+                      Track the current location and status of any ongoing
+                      donation.
                     </Typography>
                   </CardContent>
-                  <CardActions sx={{ml:1, mb:1}}>
+                  <CardActions sx={{ ml: 1, mb: 1 }}>
                     <Button
                       component={Link}
                       to="/volunteer/update-location"
                       variant="contained"
-                      sx={{bgcolor:'black'}}
+                      sx={{ bgcolor: "black" }}
                     >
                       Go to Dashboard
                     </Button>
@@ -205,7 +216,7 @@ const Home: React.FC = () => {
           )}
         </Grid>
       ) : (
-        <Card sx={{ maxWidth: 400, mt: 4, p:1 }}>
+        <Card sx={{ maxWidth: 400, mt: 4, p: 1 }}>
           <CardContent>
             <Typography variant="h6" fontWeight="bold">
               Get Started
@@ -222,11 +233,16 @@ const Home: React.FC = () => {
               component={Link}
               to="/login"
               variant="contained"
-              sx={{ mr: 2, bgcolor:'black' }}
+              sx={{ mr: 2, bgcolor: "#01B673", color:'black', fontWeight:'400' }}
             >
               Log In
             </Button>
-            <Button sx={{borderColor:'black', color:'black'}} component={Link} to="/signup" variant="outlined">
+            <Button
+              sx={{ borderColor: "black", color: "black" }}
+              component={Link}
+              to="/signup"
+              variant="outlined"
+            >
               Sign Up
             </Button>
           </CardActions>

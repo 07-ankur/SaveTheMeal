@@ -29,11 +29,6 @@ exports.getDashboardData = async (req, res) => {
 
     const donationCount = donations.length;
 
-    // const totalDonation = donations.reduce(
-    //   (sum, booking) => sum + (booking.price || 0),
-    //   0
-    // );
-
     const donationAnalytics = await Donation.aggregate([
       {
         $match: {

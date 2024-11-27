@@ -6,11 +6,7 @@ import { DateRange } from "react-day-picker";
 import { cn } from "../lib/utils";
 import { Button } from "./button";
 import { Calendar } from "./calendar";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "./popover";
+import { Popover, PopoverContent, PopoverTrigger } from "./popover";
 
 interface DatePickerWithRangeProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -50,7 +46,14 @@ export default function DatePickerWithRange({
             )}
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-auto p-0" align="start">
+        {/* Add background color to the PopoverContent */}
+        <PopoverContent
+          className={cn(
+            "w-auto p-0 bg-white shadow-md",
+            "rounded-md border border-gray-200"
+          )}
+          align="start"
+        >
           <Calendar
             initialFocus
             mode="range"
